@@ -62,7 +62,7 @@ class RootController(object):
         api_v2 = APIVersion(
             id='v2.0',
             status='CURRENT',
-            link=resource.Link(href=host_url_v2, target='v2')
+            links=[resource.Link(href=host_url_v2, target='v2')]
         )
 
-        return [api_v2]
+        return {"versions":[api_v2]}
