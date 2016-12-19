@@ -36,7 +36,7 @@ class APIVersion(resource.Resource):
     status = API_STATUS
     "The status of the API (SUPPORTED, CURRENT or DEPRECATED)."
 
-    link = resource.Link
+    links = [resource.Link]
     "The link to the versioned API."
 
     @classmethod
@@ -44,11 +44,11 @@ class APIVersion(resource.Resource):
         return cls(
             id='v1.0',
             status='CURRENT',
-            link=resource.Link(
+            links=[resource.Link(
                 target_name='v1',
                 href='http://example.com:9777/v1',
                 rel='self'
-            )
+            )]
         )
 
 
