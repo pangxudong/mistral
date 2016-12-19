@@ -47,6 +47,7 @@ class APIVersion(resource.Resource):
             link=resource.Link(
                 target_name='v1',
                 href='http://example.com:9777/v1'
+                rel='self'
             )
         )
 
