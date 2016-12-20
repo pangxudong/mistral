@@ -51,11 +51,14 @@ class APIVersion(resource.Resource):
             )]
         )
 
+class APIVersions(resource.Resource):
+    versions = [APIVersion]
+
 
 class RootController(object):
     v2 = v2_root.Controller()
 
-    @wsme_pecan.wsexpose([APIVersion])
+    @wsme_pecan.wsexpose(APIVersions)
     def index(self):
         LOG.debug("Fetching API versions.")
 
@@ -65,5 +68,6 @@ class RootController(object):
             status='CURRENT',
             links=[resource.Link(href=host_url_v2, target='v2',rel='self')]
         )
+        versions_list = [api_v2]
 
-        return [api_v2]
+        return APIVersions(versions=versions_list)
